@@ -1,0 +1,8 @@
+INFORMATION ON CLASSES:
+
+The main class is the LDAMain class. It'll do all the operations from the other classes.
+So far, it will transform a text file into an LDA document.
+
+To run it, type "Python LDAMain.py [text documents]"
+
+Speeches.txt is a sample text file that can be used for testing.
