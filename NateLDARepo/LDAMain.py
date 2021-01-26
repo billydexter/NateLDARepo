@@ -28,6 +28,8 @@ indianDocuments = filesToDocuments(indianTweets)
 americanTweets = extractJSON(files[1])
 americanDocuments = filesToDocuments(americanTweets)
 
+#Exports the data into a new JSON file named tweetDocuments.json
+#NOTE: Running emoji does not work properly if running on Linux.
 tweets = {}
 tweets['tweets'] = []
 for i in indianDocuments:
