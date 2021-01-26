@@ -1,2 +1,4 @@
 .idea
 venv
+NateLDARepo/Formatted_indian_tweets.json
+NateLDARepo/Formatted_us_tweets.json
