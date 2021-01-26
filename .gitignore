@@ -2,3 +2,5 @@
 venv
 NateLDARepo/Formatted_indian_tweets.json
 NateLDARepo/Formatted_us_tweets.json
+NateLDARepo/testScript.py
+NateLDARepo/__pycache__/FileToDocument.cpython-38.pyc

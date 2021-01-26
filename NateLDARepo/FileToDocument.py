@@ -44,7 +44,11 @@ def extractJSON(file):
     with open(file) as file:
         data = json.load(file)
         tweetList = list(data)
-        return tweetList
+        validTweets = []
+        for i in range(0, len(tweetList)):
+            if data[tweetList[i]][0] == "VALID":
+                validTweets.append(tweetList[i])
+        return validTweets
 
 #Detects unusual ascii characters and will save them as emojis if needed.
 def deEmojify(inputString, words):
