@@ -42,5 +42,5 @@ for i in americanDocuments:
         'words': i
     })
 
-with open('tweetDocuments.txt', 'w') as outfile:
+with open('tweetDocuments.json', 'w') as outfile:
     json.dump(tweets, outfile)
