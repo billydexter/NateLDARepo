@@ -22,13 +22,13 @@ def oneFileToDocument(tweet, stop_words):
     #The loop changing special characters.
     for i in range(0, len(words)):
         if (words[i][0] == "@"):
-            words[i] = "[MENTION]"
+            words[i] = ""
         elif (words[i][0] == "#"):
-            words[i] = "[HASHTAG]"
+            words[i] = words[i][1:]
         elif (len(words[i]) > 1 and words[i][0:4] == "http"):
-            words[i] = "[URL]"
+            words[i] = ""
         elif (len(words[i]) > 14 and words[i][0:15] == "pic.twitter.com"):
-            words[i] = "[PICTURE]"
+            words[i] = ""
         else:
             words[i] = deEmojify(words[i].lower(), words)
     #Gets rid of punctuation marks.
