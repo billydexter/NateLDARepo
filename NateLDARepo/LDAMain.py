@@ -36,13 +36,16 @@ if len(sys.argv) > 4:
     tfidfThreshold = float(sys.argv[4])
 
 #extract JSON turns the files into a list of strings of text.
+print("Extracting the indian tweets from the JSON file...\n")
 indianTweets = extractJSON(files[0])
 
 
 #format and clean the words from the JSON file.
+print("Cleaning the strings inside the indian tweets...\n")
 indianDocuments = filesToDocuments(indianTweets)
 
 #Removes words that do not appear frequently in the document.
+print("Removing words that don't appear often in the indian documents...\n")
 indianDocuments = filterLowWordCount(indianDocuments, minimumFrequency)
 
 #TFIDF assigns each word a value between 0 and 1 depending on how important
@@ -51,16 +54,22 @@ indianDocuments = filterLowWordCount(indianDocuments, minimumFrequency)
 #3 minutes to run on the lab machines. It will drop values that are below
 #the threshold of being measured as important.
 if (tfidfThreshold != -1):
+    print("Running TFIDF on the indian documents...\n")
     indianDocuments = tfidf(indianDocuments, tfidfThreshold)
 
 #Does the same process for the American tweets as the Indian tweets.
+print("Extracting the american tweets from the JSON file...\n")
 americanTweets = extractJSON(files[1])
+print("Cleaning the strings inside the american tweets...\n")
 americanDocuments = filesToDocuments(americanTweets)
+print("Removing words that don't appear often in the american documents...\n")
 americanDocuments = filterLowWordCount(americanDocuments, minimumFrequency)
 if (tfidfThreshold != -1):
+    print("Running TFIDF on the indian documents...\n")
     americanDocuments = tfidf(americanDocuments, tfidfThreshold)
 #Exports the data into a new JSON file named tweetDocuments.json
 #NOTE: Running emoji does not work properly if running on Linux.
+print("Converting indian and american tweets into a JSON file...\n")
 tweets = {}
 tweets['tweets'] = []
 for i in indianDocuments:
@@ -77,3 +86,5 @@ for i in americanDocuments:
 
 with open('tweetDocuments.json', 'w') as outfile:
     json.dump(tweets, outfile)
+
+print("Done")

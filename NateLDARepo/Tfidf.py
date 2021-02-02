@@ -24,8 +24,8 @@ def tfidf(documents, minimumCutoff):
         tfMeasure = tfidf[dictionary.doc2bow(i)]
         valsToRemove = []
         dict_1 = dict()
-        for student, score in tfMeasure:
-            dict_1.setdefault(student, []).append(score)
+        for id, score in tfMeasure:
+            dict_1.setdefault(id, []).append(score)
         for j in range(0, len(i)):
             wordID = dictionary.token2id[i[j]]
             freq = dict_1[wordID][0]
