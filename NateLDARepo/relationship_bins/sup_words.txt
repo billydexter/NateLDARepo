@@ -1,0 +1,15 @@
+boss
+master
+mentor
+mentors
+senior
+seniors
+superior
+superiors
+supervisor
+supervisors
+teacher
+teachers
+manager
+advisor
+guru
