@@ -10,19 +10,29 @@ def filesToDocuments(tweets):
     documents = []
     #sets the stopwords once so you don't have to do it every iteration. For performance.
     stop_words = set(stopwords.words('english'))
-
+    stemmer = nltk.stem.SnowballStemmer('english')
     for tweet in tweets:
-        documents.append(oneFileToDocument(tweet, stop_words))
+        newWords = separateIntoDirtyWords(tweet)
+        documents.append(oneFileToDocument(newWords, stop_words, stemmer))
     return documents
 
 #Cleans the documents of any unnecessary words, punctuation, or numbers.
-def oneFileToDocument(tweet, stop_words):
-    #Gets rid of numbers.
+def oneFileToDocument(newWords, stop_words, stemmer):
+    #Gets rid of punctuation marks.
+    table = str.maketrans('', '', string.punctuation)
+    words = [w.translate(table) for w in newWords]
+    #Gets rid of stop words and words that are less than 3 letters long.
+    words = [stemmer.stem(w) for w in words if not w in stop_words and len(w) > 2]
+
+    return words
+
+def separateIntoDirtyWords(tweet):
+    # Gets rid of numbers.
     text = nltk.re.sub(r'\d+', '', tweet)
-    #Gets rid of punctuation and turns things into lowercase.
+    # Gets rid of punctuation and turns things into lowercase.
     text = demojize(text).replace(':', ' ')
     words = text.split()
-    #The loop changing special characters.
+    # The loop changing special characters.
     newWords = []
     for i in range(0, len(words)):
         if (words[i][0] == "@"):
@@ -35,13 +45,7 @@ def oneFileToDocument(tweet, stop_words):
             pass
         else:
             newWords.append(deSpecialCharacter(words[i].lower()))
-    #Gets rid of punctuation marks.
-    table = str.maketrans('', '', string.punctuation)
-    words = [w.translate(table) for w in newWords]
-    #Gets rid of stop words and words that are less than 3 letters long.
-    words = [w for w in words if not w in stop_words and len(w) > 2]
-
-    return words
+    return newWords
 
 #Turns a JSON file into a list of tweets.
 def extractJSON(file):

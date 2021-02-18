@@ -17,9 +17,7 @@ daughter
 stepson
 stepdaughter
 toddler
-daughter-in-law
-son-in-law
-great granddaughter
-great grandson
+granddaughter
+grandson
 stepchild
 stepchildren

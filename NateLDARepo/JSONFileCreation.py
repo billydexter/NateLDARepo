@@ -2,6 +2,7 @@ import sys
 
 from FileToDocument import extractJSON, filesToDocuments
 from FileCreationHelper import create_files
+from Tfidf import filterLowWordCount
 
 files = []
 #Get the file arguments from the command line.
@@ -10,6 +11,9 @@ for i in range(1, 3):
 if len(files) < 2:
     print("Include the indian and american JSON files in the command line arguments.")
     exit()
+extension = "Same"
+if (len(sys.argv) > 3):
+    extension = sys.argv[3]
 
 #Get the minimum frequency and tfidf threshold from the command line.
 #
@@ -26,14 +30,10 @@ if len(files) < 2:
 print("Extracting the indian tweets from the JSON file...\n")
 indianTweets = extractJSON(files[0])
 
-print("Cleaning the strings inside the indian tweets...\n")
-indianDocuments = filesToDocuments(indianTweets)
-create_files(indianDocuments, "_india")
+create_files(indianTweets, "_india", extension)
 
 print("Extracting the american tweets from the JSON file...\n")
 americanTweets = extractJSON(files[1])
 
-print("Cleaning the strings inside the american tweets...\n")
-americanDocuments = filesToDocuments(americanTweets)
-create_files(americanDocuments, "_america")
+create_files(americanTweets, "_america", extension)
 
