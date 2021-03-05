@@ -10,19 +10,18 @@ def filesToDocuments(tweets):
     documents = []
     #sets the stopwords once so you don't have to do it every iteration. For performance.
     stop_words = set(stopwords.words('english'))
-    stemmer = nltk.stem.SnowballStemmer('english')
     for tweet in tweets:
         newWords = separateIntoDirtyWords(tweet)
-        documents.append(oneFileToDocument(newWords, stop_words, stemmer))
+        documents.append(oneFileToDocument(newWords, stop_words))
     return documents
 
 #Cleans the documents of any unnecessary words, punctuation, or numbers.
-def oneFileToDocument(newWords, stop_words, stemmer):
+def oneFileToDocument(newWords, stop_words):
     #Gets rid of punctuation marks.
     table = str.maketrans('', '', string.punctuation)
     words = [w.translate(table) for w in newWords]
     #Gets rid of stop words and words that are less than 3 letters long.
-    words = [stemmer.stem(w) for w in words if not w in stop_words and len(w) > 2]
+    words = [w for w in words if not w in stop_words and len(w) > 2]
 
     return words
 

@@ -73,10 +73,9 @@ def checkIfInList(A, B):
 
 def cleanTweets(tweets):
     stop_words = set(stopwords.words('english'))
-    stemmer = nltk.stem.SnowballStemmer('english')
 
     theTweets = []
 
     for tweet in tweets:
-        theTweets.append(oneFileToDocument(tweet, stop_words, stemmer))
+        theTweets.append(oneFileToDocument(tweet, stop_words))
     return theTweets
